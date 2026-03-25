@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Backgrounds — pure black, layered surfaces */
+  --color-bg: #000000;
+  --color-surface: #111111;
+  --color-surface-elevated: #1a1a1a;
+  --color-surface-overlay: #222222;
+  --color-surface-inset: #0a0a0a;
+
+  /* Borders */
+  --color-border: #2a2a2a;
+  --color-border-subtle: #1e1e1e;
+
+  /* Text — white hierarchy */
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #888888;
+  --color-text-muted: #555555;
+
+  /* Accent — pure white */
+  --color-accent: #ffffff;
+  --color-accent-hover: #e0e0e0;
+
+  /* Typography */
+  --font-display: var(--font-anton), "Anton", Impact, sans-serif;
+  --font-body: var(--font-crimson), "Crimson Text", Georgia, serif;
+  --font-sans: var(--font-space), "Space Grotesk", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", monospace;
+
+  /* Layout */
+  --panel-gap: 6px;
+  --page-margin: 12px;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+/* ========================================
+   BASE
+   ======================================== */
+
+html {
+  scroll-behavior: smooth;
+  background: #000;
+}
+
+body {
+  background: #000;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  cursor: url('/cursors/sword.png') 46 2, auto;
+}
+
+a, button, [role="button"], input[type="submit"], .btn, .surface-card {
+  cursor: url('/cursors/sword-pointer.png') 46 2, pointer;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* ========================================
+   MANGA PAGE
+   ======================================== */
+
+.manga-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--page-margin);
+  display: flex;
+  flex-direction: column;
+  gap: var(--panel-gap);
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-margin: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-margin: 32px;
+  }
+}
+
+/* ========================================
+   SURFACE CARDS
+   ======================================== */
+
+.surface-card {
+  background: linear-gradient(to bottom, #141414, #111111, #0e0e0e);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-out;
+}
+
+.surface-card:hover {
+  border-color: #3a3a3a;
+  transform: translateY(-2px) scale(1.005);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.surface-card {
+  transition: all 0.25s ease-out;
+}
+
+.surface-card img {
+  transition: filter 0.3s ease-out;
+}
+
+.surface-card:hover img {
+  filter: brightness(1.1);
+}
+
+.surface-elevated {
+  background: linear-gradient(to bottom, #1e1e1e, #1a1a1a, #161616);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   GRADIENT TEXT
+   ======================================== */
+
+.text-gradient {
+  background: linear-gradient(to bottom, var(--color-text-primary), var(--color-text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.5s ease-out;
+}
+
+.btn:hover::after {
+  left: 125%;
+}
+
+.btn-primary {
+  padding: 14px 32px;
+  color: #000;
+  background: linear-gradient(to bottom, #ffffff, #e0e0e0, #cccccc);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  padding: 12px 24px;
+  color: var(--color-text-primary);
+  background: linear-gradient(to bottom, #1a1a1a, #141414);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.btn-outline:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+   ======================================== */
+
+@keyframes float-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-float-down {
+  animation: float-down 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.animate-breathe {
+  animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes kanji-glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0); filter: brightness(1); }
+  50% { text-shadow: 0 0 40px rgba(255,255,255,0.08); filter: brightness(1.1); }
+}
+
+.animate-kanji-glow {
+  animation: kanji-glow 4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes progress-fill {
+  from { transform: scaleX(0); }
+}
+
+/* Section divider */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to var(--dir, right), transparent, var(--color-border), transparent);
+}
+
+.section-divider::before { --dir: right; }
+.section-divider::after { --dir: left; }
+
+.section-divider span {
+  padding: 0 1.5rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* ========================================
+   IMAGE UTILITIES
+   ======================================== */
+
+.img-invert {
+  filter: invert(1);
+}
+
+.img-vignette {
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 50%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 50%, transparent 90%);
+}
+
+.img-vignette-tight {
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 45%, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 45%, black 40%, transparent 80%);
+}
+
+.img-fade-bottom {
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+/* Blend image edges into dark card backgrounds */
+.img-blend {
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-composite: source-in;
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

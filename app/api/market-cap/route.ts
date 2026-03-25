@@ -1,0 +1,28 @@
+import { NextResponse } from "next/server";
+
+const TOKEN_ADDRESS = "PLACEHOLDER_CONTRACT_ADDRESS_HERE";
+
+export async function GET() {
+  try {
+    const res = await fetch(
+      `https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDRESS}`,
+      { next: { revalidate: 60 } }
+    );
+
+    if (!res.ok) {
+      return NextResponse.json({ marketCap: null }, { status: 502 });
+    }
+
+    const data = await res.json();
+    const pair = data.pairs?.[0];
+
+    return NextResponse.json({
+      marketCap: pair?.marketCap ?? null,
+      priceUsd: pair?.priceUsd ?? null,
+      volume24h: pair?.volume?.h24 ?? null,
+      priceChange24h: pair?.priceChange?.h24 ?? null,
+    });
+  } catch {
+    return NextResponse.json({ marketCap: null }, { status: 500 });
+  }
+}

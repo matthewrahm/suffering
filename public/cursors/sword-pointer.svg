@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Katana pointer — brighter, more upright for hover state -->
+
+  <!-- Blade back edge -->
+  <path d="M10 19 L27 3" stroke="#aaa" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Blade main -->
+  <path d="M10.5 19.5 C13 17, 20 10, 27.5 2.5" stroke="#e8e8e8" stroke-width="2.2" stroke-linecap="round"/>
+
+  <!-- Blade edge highlight (bright) -->
+  <path d="M11 20 C14 16.5, 21 10, 28 3" stroke="#fff" stroke-width="0.8" stroke-linecap="round"/>
+
+  <!-- Blade tip glow -->
+  <path d="M27 3 L29 1" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="28.5" cy="1.5" r="1.5" fill="rgba(255,255,255,0.15)"/>
+
+  <!-- Tsuba (guard) — round -->
+  <circle cx="9.5" cy="20.5" r="2.8" stroke="#999" stroke-width="1.5" fill="#444"/>
+  <circle cx="9.5" cy="20.5" r="1.8" stroke="#666" stroke-width="0.5" fill="none"/>
+
+  <!-- Tsuka (handle wrap) -->
+  <path d="M8 22 L3 27" stroke="#777" stroke-width="2.8" stroke-linecap="round"/>
+
+  <!-- Handle wrap pattern -->
+  <line x1="7" y1="23" x2="7.5" y2="22.5" stroke="#999" stroke-width="0.6"/>
+  <line x1="6" y1="24" x2="6.5" y2="23.5" stroke="#999" stroke-width="0.6"/>
+  <line x1="5" y1="25" x2="5.5" y2="24.5" stroke="#999" stroke-width="0.6"/>
+  <line x1="4" y1="26" x2="4.5" y2="25.5" stroke="#999" stroke-width="0.6"/>
+
+  <!-- Pommel -->
+  <circle cx="2.5" cy="27.5" r="1.2" fill="#666" stroke="#888" stroke-width="0.5"/>
+</svg>
