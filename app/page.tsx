@@ -1,3 +1,4 @@
+import { AudioToggle } from "@/components/ui/audio-toggle";
 import { InkGrain } from "@/components/ui/ink-grain";
 import { GradientBlobs } from "@/components/ui/gradient-blobs";
 import { Particles } from "@/components/ui/particles";
@@ -23,6 +24,7 @@ export default function Home() {
       <GradientBlobs />
       <Particles />
       <InkGrain />
+      <AudioToggle />
       <StatsTicker />
       <ScrollProgress />
       <main className="max-w-[1440px] mx-auto relative z-[2]">
