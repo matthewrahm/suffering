@@ -7,7 +7,7 @@ import { AnimatedNumber } from "@/components/ui/animated-number";
 import { formatMarketCap } from "@/lib/utils";
 
 const PLACEHOLDER_CA = "COMING_SOON";
-const X_HANDLE = "https://x.com/sufferonsolana";
+const X_HANDLE = "https://x.com/SufferOnSol";
 
 export function FooterSection() {
   const rm = useReducedMotion();

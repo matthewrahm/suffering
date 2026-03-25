@@ -90,7 +90,7 @@ export function StatsTicker() {
         </div>
         <div className="flex items-center justify-end gap-2">
           <a
-            href="https://x.com/sufferonsolana"
+            href="https://x.com/SufferOnSol"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-7 h-7 rounded-md border border-border hover:border-text-muted transition-colors"

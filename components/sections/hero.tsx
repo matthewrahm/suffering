@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 
 const PLACEHOLDER_CA = "COMING_SOON";
-const X_HANDLE = "https://x.com/sufferonsolana";
+const X_HANDLE = "https://x.com/SufferOnSol";
 
 export function Hero() {
   const rm = useReducedMotion();
