@@ -65,7 +65,7 @@ export function StatsTicker() {
         <div className="flex items-center">
           <button
             onClick={toggleAudio}
-            className="flex items-center justify-center w-7 h-7 rounded-md border border-border hover:border-text-muted transition-colors"
+            className={`flex items-center justify-center w-7 h-7 rounded-md border transition-colors ${playing ? "border-text-muted" : "border-border hover:border-text-muted animate-audio-pulse"}`}
             aria-label={playing ? "Mute music" : "Play music"}
           >
             {playing ? (
