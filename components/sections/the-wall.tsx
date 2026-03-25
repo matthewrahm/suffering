@@ -29,50 +29,67 @@ export function TheWall() {
       </motion.p>
 
       {/* Tweets with vertical column dividers */}
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 md:divide-x md:divide-border/20">
-        {WALL_TWEETS.map((tweet, i) => {
-          const isPlaceholder = tweet.id.startsWith("placeholder");
-          const tweetUrl = isPlaceholder
-            ? `https://x.com/${tweet.handle.replace("@", "")}`
-            : `https://x.com/${tweet.handle.replace("@", "")}/status/${tweet.id}`;
+      {WALL_TWEETS.length > 0 ? (
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 md:divide-x md:divide-border/20">
+          {WALL_TWEETS.map((tweet, i) => {
+            const tweetUrl = `https://x.com/${tweet.handle.replace("@", "")}/status/${tweet.id}`;
 
-          return (
-            <motion.a
-              key={tweet.id}
-              href={tweetUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={rm ? false : { opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="block py-6 px-4 md:px-6 border-b border-border/30 hover:bg-white/[0.02] transition-colors"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-7 h-7 rounded-full bg-white/5 border border-border/50 flex items-center justify-center shrink-0">
-                  <span className="font-sans text-[10px] text-text-muted font-medium">
-                    {tweet.author.charAt(0).toUpperCase()}
-                  </span>
+            return (
+              <motion.a
+                key={tweet.id}
+                href={tweetUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={rm ? false : { opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="block py-6 px-4 md:px-6 border-b border-border/30 hover:bg-white/[0.02] transition-colors"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-7 h-7 rounded-full bg-white/5 border border-border/50 flex items-center justify-center shrink-0">
+                    <span className="font-sans text-[10px] text-text-muted font-medium">
+                      {tweet.author.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <span className="font-sans text-sm text-text-primary font-medium">
+                      {tweet.author}
+                    </span>
+                    <span className="font-mono text-xs text-text-muted ml-2">
+                      {tweet.handle}
+                    </span>
+                  </div>
+                  <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-text-muted shrink-0">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <span className="font-sans text-sm text-text-primary font-medium">
-                    {tweet.author}
-                  </span>
-                  <span className="font-mono text-xs text-text-muted ml-2">
-                    {tweet.handle}
-                  </span>
-                </div>
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-text-muted shrink-0">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </div>
-              <p className="font-body italic text-text-secondary text-sm leading-relaxed">
-                {tweet.text}
-              </p>
-            </motion.a>
-          );
-        })}
-      </div>
+                <p className="font-body italic text-text-secondary text-sm leading-relaxed">
+                  {tweet.text}
+                </p>
+              </motion.a>
+            );
+          })}
+        </div>
+      ) : (
+        <motion.div
+          initial={rm ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 py-16 text-center border-t border-b border-border/20"
+        >
+          <p className="font-display text-5xl sm:text-6xl text-gradient uppercase leading-none animate-kanji-glow">
+            壁
+          </p>
+          <p className="font-sans text-[10px] text-text-muted tracking-widest uppercase mt-4">
+            Wall
+          </p>
+          <p className="font-body italic text-text-secondary mt-6">
+            The wall awaits its first voice.
+          </p>
+        </motion.div>
+      )}
 
       {/* CTA */}
       <motion.div

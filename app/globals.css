@@ -50,11 +50,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  cursor: url('/cursors/sword.png') 46 2, auto;
+  cursor: url('/cursors/sword.png') 28 2, auto;
 }
 
 a, button, [role="button"], input[type="submit"], .btn, .surface-card {
-  cursor: url('/cursors/sword-pointer.png') 46 2, pointer;
+  cursor: url('/cursors/sword-pointer.png') 28 2, pointer;
 }
 
 ::selection {

@@ -35,6 +35,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://suffer.xyz"),
   title: "$SUFFER | Through Suffering, Strength",
   description: "Through suffering, strength. $SUFFER on Solana.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "$SUFFER | Through Suffering, Strength",
     description: "Through suffering, strength. $SUFFER on Solana.",

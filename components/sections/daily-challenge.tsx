@@ -5,18 +5,23 @@ import { motion, useReducedMotion } from "framer-motion";
 import { CountdownTimer } from "@/components/ui/countdown-timer";
 import challenges from "@/data/challenges.json";
 
-function getDayIndex() {
+// Launch epoch — Day 1 starts on this date (UTC)
+const LAUNCH_DATE = new Date(Date.UTC(2026, 2, 25)); // March 25, 2026
+
+function getDayNumber() {
   const now = new Date();
-  const start = new Date(Date.UTC(2026, 0, 1));
-  const days = Math.floor((now.getTime() - start.getTime()) / 86_400_000);
-  return ((days % challenges.length) + challenges.length) % challenges.length;
+  const days = Math.floor((now.getTime() - LAUNCH_DATE.getTime()) / 86_400_000);
+  return Math.max(days, 0);
 }
 
-function getArchive(todayIndex: number, count: number) {
-  return Array.from({ length: count }, (_, i) => {
-    const idx =
-      ((todayIndex - (i + 1)) % challenges.length + challenges.length) %
-      challenges.length;
+function getDayIndex(dayNumber: number) {
+  return ((dayNumber % challenges.length) + challenges.length) % challenges.length;
+}
+
+function getArchive(dayNumber: number, count: number) {
+  const available = Math.min(count, dayNumber);
+  return Array.from({ length: available }, (_, i) => {
+    const idx = getDayIndex(dayNumber - (i + 1));
     return challenges[idx];
   });
 }
@@ -31,20 +36,21 @@ function getDayProgress() {
 
 export function DailyChallenge() {
   const rm = useReducedMotion();
-  const [dayIndex, setDayIndex] = useState<number | null>(null);
+  const [dayNumber, setDayNumber] = useState<number | null>(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    setDayIndex(getDayIndex());
+    setDayNumber(getDayNumber());
     setProgress(getDayProgress());
     const interval = setInterval(() => setProgress(getDayProgress()), 60_000);
     return () => clearInterval(interval);
   }, []);
 
-  if (dayIndex === null) return null;
+  if (dayNumber === null) return null;
 
-  const today = challenges[dayIndex];
-  const archive = getArchive(dayIndex, 4);
+  const todayIndex = getDayIndex(dayNumber);
+  const today = challenges[todayIndex];
+  const archive = getArchive(dayNumber, 4);
 
   const tweetText = encodeURIComponent(`${today.prompt}\n\n$SUFFER`);
   const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
@@ -82,7 +88,7 @@ export function DailyChallenge() {
             </span>
             <span className="w-px h-3 bg-border" />
             <span className="font-mono text-xs text-text-muted">
-              Day {dayIndex + 1}
+              Day {dayNumber + 1}
             </span>
           </motion.div>
 
@@ -160,23 +166,29 @@ export function DailyChallenge() {
           <p className="font-sans text-[10px] text-text-muted tracking-widest uppercase mb-4">
             Previous
           </p>
-          {archive.map((c, i) => (
-            <motion.div
-              key={c.id}
-              initial={rm ? false : { opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: i * 0.06 }}
-              className="py-3 border-b border-border/30 last:border-b-0"
-            >
-              <span className="font-mono text-[10px] text-text-muted block mb-1">
-                {c.kanji} &middot; {c.meaning}
-              </span>
-              <p className="font-body italic text-xs sm:text-sm text-text-secondary line-clamp-2">
-                {c.prompt}
-              </p>
-            </motion.div>
-          ))}
+          {archive.length === 0 ? (
+            <p className="font-body italic text-xs text-text-muted">
+              Day 1 &mdash; the path begins.
+            </p>
+          ) : (
+            archive.map((c, i) => (
+              <motion.div
+                key={c.id}
+                initial={rm ? false : { opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
+                className="py-3 border-b border-border/30 last:border-b-0"
+              >
+                <span className="font-mono text-[10px] text-text-muted block mb-1">
+                  {c.kanji} &middot; {c.meaning}
+                </span>
+                <p className="font-body italic text-xs sm:text-sm text-text-secondary line-clamp-2">
+                  {c.prompt}
+                </p>
+              </motion.div>
+            ))
+          )}
         </motion.div>
       </div>
     </section>
