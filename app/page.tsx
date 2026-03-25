@@ -14,6 +14,7 @@ import { DailyChallenge } from "@/components/sections/daily-challenge";
 import { QuoteTwo } from "@/components/sections/quote-two";
 import { TheWall } from "@/components/sections/the-wall";
 import { TheCode } from "@/components/sections/the-code";
+import { TheTruth } from "@/components/sections/the-truth";
 import { FooterSection } from "@/components/sections/footer-section";
 
 export default function Home() {
@@ -32,16 +33,18 @@ export default function Home() {
         <SectionDivider kanji="二" />
         <Manifesto />
         <SectionDivider kanji="三" />
-        <QuoteOne />
+        <TheTruth />
         <SectionDivider kanji="四" />
-        <Community />
+        <QuoteOne />
         <SectionDivider kanji="五" />
-        <DailyChallenge />
+        <Community />
         <SectionDivider kanji="六" />
-        <QuoteTwo />
+        <DailyChallenge />
         <SectionDivider kanji="七" />
-        <TheWall />
+        <QuoteTwo />
         <SectionDivider kanji="八" />
+        <TheWall />
+        <SectionDivider kanji="九" />
         <TheCode />
         <FooterSection />
       </main>
