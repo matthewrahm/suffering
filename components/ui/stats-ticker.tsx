@@ -61,7 +61,7 @@ export function StatsTicker() {
             </svg>
           </a>
           <a
-            href="https://pump.fun/coin/COMING_SOON"
+            href="https://pump.fun/coin/EEdZH7ZqLmuE26vjcHzXmugFFtTJJ82QVpQMhyfWpump"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 h-7 rounded-md bg-white text-black text-[11px] font-sans font-semibold uppercase tracking-wider hover:bg-accent-hover transition-colors"

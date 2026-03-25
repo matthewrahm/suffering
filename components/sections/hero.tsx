@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 
-const PLACEHOLDER_CA = "COMING_SOON";
+const CONTRACT_ADDRESS = "EEdZH7ZqLmuE26vjcHzXmugFFtTJJ82QVpQMhyfWpump";
 const X_HANDLE = "https://x.com/SufferOnSol";
 
 export function Hero() {
@@ -65,7 +65,7 @@ export function Hero() {
         className="flex flex-wrap gap-3 mt-6 sm:mt-8"
       >
         <a
-          href={`https://pump.fun/coin/${PLACEHOLDER_CA}`}
+          href={`https://pump.fun/coin/${CONTRACT_ADDRESS}`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary text-sm"

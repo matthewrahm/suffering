@@ -6,7 +6,7 @@ import { CopyButton } from "@/components/ui/copy-button";
 import { AnimatedNumber } from "@/components/ui/animated-number";
 import { formatMarketCap } from "@/lib/utils";
 
-const PLACEHOLDER_CA = "COMING_SOON";
+const CONTRACT_ADDRESS = "EEdZH7ZqLmuE26vjcHzXmugFFtTJJ82QVpQMhyfWpump";
 const X_HANDLE = "https://x.com/SufferOnSol";
 
 export function FooterSection() {
@@ -68,7 +68,7 @@ export function FooterSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <p className="text-xs text-text-muted tracking-wider uppercase font-sans mb-2">Contract</p>
-          <CopyButton text={PLACEHOLDER_CA} />
+          <CopyButton text={CONTRACT_ADDRESS} />
         </motion.div>
 
         {/* CTAs */}
@@ -80,7 +80,7 @@ export function FooterSection() {
           className="flex flex-col gap-2"
         >
           <a
-            href={`https://pump.fun/coin/${PLACEHOLDER_CA}`}
+            href={`https://pump.fun/coin/${CONTRACT_ADDRESS}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary text-center text-sm"
